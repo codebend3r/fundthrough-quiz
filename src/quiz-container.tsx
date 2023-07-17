@@ -30,7 +30,7 @@ export const Quiz = () => {
   return (
     <QuizContainer>
       <P>
-        Match the setup to the corresponding punchline by clicking on a cards in
+        Match the setup to the corresponding punchline by clicking on each card.
         each column
       </P>
       <Controls>

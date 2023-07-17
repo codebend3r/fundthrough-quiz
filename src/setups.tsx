@@ -5,12 +5,14 @@ import { Setup } from "./types";
 import SetupCard from "./setup-card/setup-card-index";
 import { useMemo } from "react";
 import { H3 } from "./typography/headers";
+import { QUADRARY_COLOUR } from "./constants/colours";
 
 const GridContainer = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
   padding: 0;
+  align-content: start;
 `;
 
 const SetupsContainer = styled.div`
@@ -29,7 +31,7 @@ export const Setups = () => {
 
   return (
     <GridContainer>
-      <H3>Setups</H3>
+      <H3 textColour={QUADRARY_COLOUR}>Setups</H3>
       <SetupsContainer>
         {setupsListShuffled.map(({ id, setup }) => (
           <SetupCard key={`${id}-setup`} id={id} setup={setup} />

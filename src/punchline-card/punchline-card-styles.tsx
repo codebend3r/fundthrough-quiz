@@ -1,19 +1,22 @@
 import styled from "@emotion/styled";
-import { getOutlineColourByStatus } from "../utils/getColour";
 import { CardStatus } from "../constants/card-status";
-import { QUINTARY_COLOUR, SECONDARY_COLOUR } from "../constants/colours";
+import {
+  QUINTARY_COLOUR,
+  SECONDARY_COLOUR,
+  TERTIARY_COLOUR,
+} from "../constants/colours";
 
 export const PunchlineContainer = styled.button<{
   status: CardStatus;
-  disabled: boolean;
+  disabled?: boolean;
 }>`
   display: grid;
   align-items: center;
   grid-template-columns: 1fr auto;
   width: 100%;
-  border: ${({ status }) => `2px solid ${getOutlineColourByStatus(status)}`};
+  border: 2px solid ${TERTIARY_COLOUR};
   background-color: ${({ disabled }) => (disabled ? QUINTARY_COLOUR : "none")};
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   text-align: left;
   border-radius: 0.5rem;
   font-size: 1rem;

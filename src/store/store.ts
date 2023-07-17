@@ -72,7 +72,6 @@ export const useGameScore = create<GameScore>((set) => ({
       });
 
       isCorrectAnswer && state.registerCorrectAnswer(setup.id);
-      isCorrectAnswer && console.log("CORRECT ANSWER");
 
       return { selectedJoke };
     }),
@@ -88,7 +87,6 @@ export const useGameScore = create<GameScore>((set) => ({
       });
 
       isCorrectAnswer && state.registerCorrectAnswer(punchline.id);
-      isCorrectAnswer && console.log("CORRECT ANSWER");
 
       return { selectedJoke };
     }),
