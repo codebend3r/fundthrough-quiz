@@ -3,6 +3,7 @@ import { CARD_STATUS } from "../constants/card-status";
 import { useGameScore } from "../store/store";
 import { SelectedIcon } from "../common/selected-icon";
 import { PunchlineContainer } from "./punchline-card-styles";
+import { useMemo } from "react";
 
 export const PunchlineCard = ({
   id,
@@ -14,9 +15,11 @@ export const PunchlineCard = ({
   const onPunchlineClick = useGameScore((state) => state.onPunchlineClick);
   const selectedJoke = useGameScore((state) => state.selectedJoke);
   const correctIDs = useGameScore((state) => state.correctIDs);
-  const isCorrectAnswer: boolean = correctIDs.some(
-    (correctId) => correctId === id
+  const correctIndex: number = useMemo(
+    () => correctIDs.findIndex((correctId) => correctId === id),
+    [correctIDs]
   );
+  const isCorrectAnswer: boolean = !!correctIDs[correctIndex];
   const isSelected: boolean = selectedJoke?.punchline?.id === id;
   const isSelectedOrIncorrect: string = isSelected ? "#ddf012" : "#FF0000";
   const iconColour = isCorrectAnswer ? "#00FF00" : isSelectedOrIncorrect;
@@ -29,7 +32,7 @@ export const PunchlineCard = ({
       disabled={isCorrectAnswer}
     >
       <P>{inDebugMode ? `${id}-${punchline}` : punchline}</P>
-      <SelectedIcon iconColour={iconColour} />
+      <SelectedIcon iconColour={iconColour} correctCount={correctIndex + 1} />
     </PunchlineContainer>
   );
 };
