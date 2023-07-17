@@ -3,36 +3,45 @@ import { Button } from "./common/button";
 import { useGameScore } from "./store/store";
 import Setups from "./setups";
 import Punchlines from "./punchlines";
-import { useEffect } from "react";
+import Debugger from "./debugger";
+import { P } from "./typography/headers";
 
 const QuizContainer = styled.div`
-  border: 1px solid red;
-  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+`;
+
+const Controls = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 const QuestionOrganizer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 4rem;
 `;
 
 export const Quiz = () => {
   const fetchQuizData = useGameScore((state) => state.getJokes);
-  // const rawJokesData = useGameScore((state) => state.rawJokesData);
-
-  useEffect(() => {
-    fetchQuizData();
-  }, []);
+  const reset = useGameScore((state) => state.reset);
+  const inDebugMode: boolean = import.meta.env.VITE_DEBUG_MODE === "true";
 
   return (
     <QuizContainer>
-      <Button onClick={fetchQuizData}>New Game</Button>
-
+      <P>
+        Match the setup to the corresponding punchline by clicking on a cards in
+        each column
+      </P>
+      <Controls>
+        <Button onClick={fetchQuizData}>New Game</Button>
+        <Button onClick={reset}>Reset</Button>
+      </Controls>
+      {inDebugMode && <Debugger />}
       <QuestionOrganizer>
         <Setups />
         <Punchlines />
       </QuestionOrganizer>
-
-      {/* <pre>{JSON.stringify(rawJokesData, null, 2)}</pre> */}
     </QuizContainer>
   );
 };

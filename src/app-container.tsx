@@ -3,14 +3,15 @@ import QuizContainer from "./quiz-container";
 import { H1 } from "./typography/headers";
 
 const OuterContainer = styled.div`
-  background-color: white;
   width: 100vw;
   height: 100vh;
 `;
 
 const InnerContainer = styled.div`
   display: grid;
-  padding: 1rem;
+  padding: 1rem 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
 `;
 
 export const App = () => (

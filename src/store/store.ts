@@ -1,21 +1,33 @@
 import axios from "axios";
 import { create } from "zustand";
-import { Setup, Punchline, DataChunk } from "../types";
+import { Setup, Punchline, DataChunk, JokeHash } from "../types";
+import { findMatchById } from "../utils/findMatchUtils";
 
 const JOKES_URL = "https://official-joke-api.appspot.com/jokes/ten";
 
 type GameScore = {
   isLoading: boolean;
-  selectedJoke: DataChunk[];
+  correctIDs: number[];
+  selectedJoke: JokeHash;
+  correctCount: number;
   setupsList: Setup[];
   punchlinesList: Punchline[];
   getJokes: () => void;
+  reset: () => void;
+  onSetupClick: (setup: Setup) => any;
+  onPunchlineClick: (punchline: Punchline) => any;
+  registerCorrectAnswer: (id: number) => any;
   rawJokesData: unknown;
 };
 
 export const useGameScore = create<GameScore>((set) => ({
   isLoading: false,
-  selectedJoke: [],
+  correctIDs: [],
+  selectedJoke: {
+    setup: null,
+    punchline: null,
+  },
+  correctCount: 0,
   getJokes: async () => {
     try {
       const fetchedData = await axios.get(JOKES_URL);
@@ -41,6 +53,50 @@ export const useGameScore = create<GameScore>((set) => ({
       });
     }
   },
+  reset: () =>
+    set({
+      selectedJoke: {
+        setup: null,
+        punchline: null,
+      },
+    }),
+  onSetupClick: (setup: Setup) =>
+    set((state) => {
+      const { punchline } = state.selectedJoke;
+
+      const selectedJoke = { setup, punchline };
+
+      const isCorrectAnswer: boolean = findMatchById({
+        setup,
+        punchline,
+      });
+
+      isCorrectAnswer && state.registerCorrectAnswer(setup.id);
+      isCorrectAnswer && console.log("CORRECT ANSWER");
+
+      return { selectedJoke };
+    }),
+  onPunchlineClick: (punchline: Punchline) =>
+    set((state) => {
+      const { setup } = state.selectedJoke;
+
+      const selectedJoke = { setup, punchline };
+
+      const isCorrectAnswer: boolean = findMatchById({
+        setup,
+        punchline,
+      });
+
+      isCorrectAnswer && state.registerCorrectAnswer(punchline.id);
+      isCorrectAnswer && console.log("CORRECT ANSWER");
+
+      return { selectedJoke };
+    }),
+  registerCorrectAnswer: (id: number) =>
+    set((state) => ({
+      correctCount: state.correctCount + 1,
+      correctIDs: [...state.correctIDs, id],
+    })),
   rawJokesData: {},
   setupsList: [],
   punchlinesList: [],

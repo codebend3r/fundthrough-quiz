@@ -3,7 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -11,9 +10,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  background-color: #2b2d42;
+  color: white;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: white;
   text-decoration: inherit;
 }
 
@@ -25,6 +29,7 @@ body {
   margin: 0;
 }
 
+p,
 h1,
 h2,
 h3,
@@ -40,29 +45,12 @@ nav {
 }
 
 button {
+  font-family: "Roboto Mono", monospace;
+  color: white;
   appearance: none;
   border: none;
   outline: none;
   padding: 0;
   margin: 0;
-}
-/* button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  background: none;
 }

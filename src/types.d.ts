@@ -14,3 +14,8 @@ export type DataChunk = {
   punchline: string;
   setup: string;
 };
+
+type JokeHash = {
+  setup: Setup | null;
+  punchline: Punchline | null;
+};
