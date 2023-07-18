@@ -29,6 +29,16 @@ export const useGameScore = create<GameScore>((set) => ({
   },
   correctCount: 0,
   getJokes: async () => {
+    set({
+      isLoading: true,
+      selectedJoke: {
+        setup: null,
+        punchline: null,
+      },
+      correctIDs: [],
+      correctCount: 0,
+    });
+
     try {
       const fetchedData = await axios.get(JOKES_URL);
 
@@ -59,6 +69,8 @@ export const useGameScore = create<GameScore>((set) => ({
         setup: null,
         punchline: null,
       },
+      correctIDs: [],
+      correctCount: 0,
     }),
   onSetupClick: (setup: Setup) =>
     set((state) => {

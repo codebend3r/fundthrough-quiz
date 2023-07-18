@@ -10,6 +10,7 @@ export const Button = styled.button`
   border: 1px solid ${SECONDARY_COLOUR};
   background-color: ${SECONDARY_COLOUR};
   cursor: pointer;
+  text-shadow: 0 0 8px #303030;
 
   &:hover {
     background-color: ${TERTIARY_COLOUR};

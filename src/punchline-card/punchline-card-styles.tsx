@@ -11,11 +11,13 @@ export const PunchlineContainer = styled.button<{
   disabled?: boolean;
 }>`
   display: grid;
+  gap: 1rem;
   align-items: center;
   grid-template-columns: 1fr auto;
   width: 100%;
   border: 2px solid ${TERTIARY_COLOUR};
-  background-color: ${({ disabled }) => (disabled ? QUINTARY_COLOUR : "none")};
+  background-color: ${({ disabled }) =>
+    disabled ? QUINTARY_COLOUR : "transparent"};
   padding: 1.5rem 1rem;
   text-align: left;
   border-radius: 0.5rem;

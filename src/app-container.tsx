@@ -9,9 +9,12 @@ const OuterContainer = styled.div`
 
 const InnerContainer = styled.div`
   display: grid;
-  padding: 1rem 2rem;
+  padding: 0 0.5rem;
   max-width: 1600px;
   margin: 0 auto;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
 `;
 
 export const App = () => (

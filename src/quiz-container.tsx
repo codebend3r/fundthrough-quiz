@@ -5,10 +5,12 @@ import Setups from "./setups";
 import Punchlines from "./punchlines";
 import Debugger from "./debugger";
 import { P } from "./typography/headers";
+import { Preloader } from "./common/preloader";
 
 const QuizContainer = styled.div`
   display: grid;
   gap: 1rem;
+  grid-template-rows: auto 60px 1fr;
 `;
 
 const Controls = styled.div`
@@ -25,14 +27,21 @@ const QuestionOrganizer = styled.div`
 export const Quiz = () => {
   const fetchQuizData = useGameScore((state) => state.getJokes);
   const reset = useGameScore((state) => state.reset);
+  const isLoading = useGameScore((state) => state.isLoading);
+  const correctCount = useGameScore((state) => state.correctCount);
   const inDebugMode: boolean = import.meta.env.VITE_DEBUG_MODE === "true";
 
-  return (
+  return isLoading ? (
+    <Preloader />
+  ) : (
     <QuizContainer>
       <P>
         Match the setup to the corresponding punchline by clicking on each card.
         each column
       </P>
+      {correctCount === 10 && (
+        <P textColour="#00FF00">Congratulations! You won the game!</P>
+      )}
       <Controls>
         <Button onClick={fetchQuizData}>New Game</Button>
         <Button onClick={reset}>Reset</Button>
