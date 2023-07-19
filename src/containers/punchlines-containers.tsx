@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { useGameScore } from "./store/store";
-import { Punchline } from "./types";
-import { shuffleArray } from "./utils/arrayUtils";
-import PunchlineCard from "./punchline-card/punchline-card-index";
+import { useGameScore } from "../store/store";
+import { Punchline } from "../types";
+import { shuffleArray } from "../utils/arrayUtils";
+import PunchlineCard from "../punchline-card/punchline-card-index";
 import { useMemo } from "react";
-import { H3 } from "./typography/headers";
-import { TERTIARY_COLOUR } from "./constants/colours";
+import { H3 } from "../typography/headers";
+import { TERTIARY_COLOUR } from "../constants/colours";
 
 const GridContainer = styled.div`
   display: grid;

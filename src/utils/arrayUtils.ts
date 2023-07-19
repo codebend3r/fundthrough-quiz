@@ -4,9 +4,13 @@
  * @param array
  * @returns array
  */
-export const shuffleArray = <T>(array: T[]): T[] => [
-  ...array.sort(() => 0.5 - Math.random()),
-];
+export const shuffleArray = <T>(array: T[]): T[] => {
+  // always return a copy of the array
+  // don't mute the original array
+  const arrayCopied = [...array];
+
+  return arrayCopied.sort(() => 0.5 - Math.random());
+};
 
 /**
  * @method shuffleArrayFY
@@ -17,13 +21,16 @@ export const shuffleArray = <T>(array: T[]): T[] => [
  * @returns array
  */
 export const shuffleArrayFY = <T>(array: T[]): T[] => {
-  const shuffledArray = [...array];
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
+  // always return a copy of the array
+  // don't mute the original array
+  const arrayCopied = [...array];
+
+  for (let i = arrayCopied.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    const temp = shuffledArray[i];
-    shuffledArray[i] = shuffledArray[j];
-    shuffledArray[j] = temp;
+    const temp = arrayCopied[i];
+    arrayCopied[i] = arrayCopied[j];
+    arrayCopied[j] = temp;
   }
 
-  return shuffledArray;
+  return arrayCopied;
 };

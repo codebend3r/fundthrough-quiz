@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import QuizContainer from "./quiz-container";
-import { H1 } from "./typography/headers";
+import { H1 } from "../typography/headers";
 
 const OuterContainer = styled.div`
   width: 100vw;

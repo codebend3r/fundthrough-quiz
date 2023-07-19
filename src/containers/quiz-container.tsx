@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { Button } from "./common/button";
-import { useGameScore } from "./store/store";
-import Setups from "./setups";
-import Punchlines from "./punchlines";
-import Debugger from "./debugger";
-import { P } from "./typography/headers";
-import { Preloader } from "./common/preloader";
+import { Button } from "../common/button";
+import { useGameScore } from "../store/store";
+import Setups from "./setups-containers";
+import Punchlines from "./punchlines-containers";
+import Debugger from "../debugger";
+import { P } from "../typography/headers";
+import { Preloader } from "../common/preloader";
 
 const QuizContainer = styled.div`
   display: grid;
@@ -24,6 +24,11 @@ const QuestionOrganizer = styled.div`
   gap: 4rem;
 `;
 
+const instructions: string =
+  "Match the setup to the corresponding punchline by clicking on each card in each column";
+
+const winningText: string = "Congratulations! You have matched all 10 jokes.";
+
 export const Quiz = () => {
   const fetchQuizData = useGameScore((state) => state.getJokes);
   const reset = useGameScore((state) => state.reset);
@@ -35,13 +40,8 @@ export const Quiz = () => {
     <Preloader />
   ) : (
     <QuizContainer>
-      <P>
-        Match the setup to the corresponding punchline by clicking on each card.
-        each column
-      </P>
-      {correctCount === 10 && (
-        <P textColour="#00FF00">Congratulations! You won the game!</P>
-      )}
+      <P>{instructions}</P>
+      {correctCount === 10 && <P textColour="#00FF00">{winningText}</P>}
       <Controls>
         <Button onClick={fetchQuizData}>New Game</Button>
         <Button onClick={reset}>Reset</Button>

@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { useGameScore } from "./store/store";
-import { shuffleArray } from "./utils/arrayUtils";
-import { Setup } from "./types";
-import SetupCard from "./setup-card/setup-card-index";
+import { useGameScore } from "../store/store";
+import { shuffleArray } from "../utils/arrayUtils";
+import { Setup } from "../types";
+import SetupCard from "../setup-card/setup-card-index";
 import { useMemo } from "react";
-import { H3 } from "./typography/headers";
-import { QUADRARY_COLOUR } from "./constants/colours";
+import { H3 } from "../typography/headers";
+import { QUADRARY_COLOUR } from "../constants/colours";
 
 const GridContainer = styled.div`
   display: grid;
