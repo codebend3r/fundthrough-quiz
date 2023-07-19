@@ -1,14 +1,14 @@
-import styled from "@emotion/styled";
-import { CardStatus } from "../constants/card-status";
+import styled from '@emotion/styled'
+import { CardStatus } from '../constants/card-status'
 import {
   QUADRARY_COLOUR,
   QUINTARY_COLOUR,
   SECONDARY_COLOUR,
-} from "../constants/colours";
+} from '../constants/colours'
 
 export const SetupCardContainer = styled.button<{
-  status: CardStatus;
-  disabled?: boolean;
+  status: CardStatus
+  disabled?: boolean
 }>`
   display: grid;
   gap: 1rem;
@@ -17,7 +17,7 @@ export const SetupCardContainer = styled.button<{
   width: 100%;
   border: 2px solid ${QUADRARY_COLOUR};
   background-color: ${({ disabled }) =>
-    disabled ? QUINTARY_COLOUR : "transparent"};
+    disabled ? QUINTARY_COLOUR : 'transparent'};
   padding: 1.5rem 1rem;
   text-align: left;
   border-radius: 0.5rem;
@@ -32,4 +32,4 @@ export const SetupCardContainer = styled.button<{
   &:disabled {
     background-color: ${QUINTARY_COLOUR};
   }
-`;
+`

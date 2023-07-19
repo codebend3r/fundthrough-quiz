@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { SECONDARY_COLOUR, TERTIARY_COLOUR } from "../constants/colours";
+import styled from '@emotion/styled'
+import { SECONDARY_COLOUR, TERTIARY_COLOUR } from '../constants/colours'
 
 export const Button = styled.button`
   display: flex;
@@ -15,4 +15,4 @@ export const Button = styled.button`
   &:hover {
     background-color: ${TERTIARY_COLOUR};
   }
-`;
+`

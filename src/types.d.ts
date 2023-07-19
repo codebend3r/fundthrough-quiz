@@ -1,21 +1,21 @@
 export type Setup = {
-  id: number;
-  setup: string;
-};
+  id: number
+  setup: string
+}
 
 export type Punchline = {
-  id: number;
-  punchline: string;
-};
+  id: number
+  punchline: string
+}
 
 export type DataChunk = {
-  type: string;
-  id: number;
-  punchline: string;
-  setup: string;
-};
+  type: string
+  id: number
+  punchline: string
+  setup: string
+}
 
 type JokeHash = {
-  setup: Setup | null;
-  punchline: Punchline | null;
-};
+  setup: Setup | null
+  punchline: Punchline | null
+}

@@ -7,10 +7,10 @@
 export const shuffleArray = <T>(array: T[]): T[] => {
   // always return a copy of the array
   // don't mute the original array
-  const arrayCopied = [...array];
+  const arrayCopied = [...array]
 
-  return arrayCopied.sort(() => 0.5 - Math.random());
-};
+  return arrayCopied.sort(() => 0.5 - Math.random())
+}
 
 /**
  * @method shuffleArrayFY
@@ -23,14 +23,14 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 export const shuffleArrayFY = <T>(array: T[]): T[] => {
   // always return a copy of the array
   // don't mute the original array
-  const arrayCopied = [...array];
+  const arrayCopied = [...array]
 
   for (let i = arrayCopied.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = arrayCopied[i];
-    arrayCopied[i] = arrayCopied[j];
-    arrayCopied[j] = temp;
+    const j = Math.floor(Math.random() * (i + 1))
+    const temp = arrayCopied[i]
+    arrayCopied[i] = arrayCopied[j]
+    arrayCopied[j] = temp
   }
 
-  return arrayCopied;
-};
+  return arrayCopied
+}

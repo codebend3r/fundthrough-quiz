@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import { useGameScore } from "../store/store";
-import { shuffleArray } from "../utils/arrayUtils";
-import { Setup } from "../types";
-import SetupCard from "../setup-card/setup-card-index";
-import { useMemo } from "react";
-import { H3 } from "../typography/headers";
-import { QUADRARY_COLOUR } from "../constants/colours";
+import styled from '@emotion/styled'
+import { useGameScore } from '../store/store'
+import { shuffleArray } from '../utils/arrayUtils'
+import { Setup } from '../types'
+import SetupCard from '../setup-card/setup-card-index'
+import { useMemo } from 'react'
+import { H3 } from '../typography/headers'
+import { QUADRARY_COLOUR } from '../constants/colours'
 
 const GridContainer = styled.div`
   display: grid;
@@ -13,21 +13,21 @@ const GridContainer = styled.div`
   grid-template-columns: 1fr;
   padding: 0;
   align-content: start;
-`;
+`
 
 const SetupsContainer = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
   padding: 0;
-`;
+`
 
 export const Setups = () => {
-  const setupsList: Setup[] = useGameScore((state) => state.setupsList);
+  const setupsList: Setup[] = useGameScore((state) => state.setupsList)
   const setupsListShuffled: Setup[] = useMemo(
     () => shuffleArray<Setup>(setupsList),
     [setupsList]
-  );
+  )
 
   return (
     <GridContainer>
@@ -38,7 +38,7 @@ export const Setups = () => {
         ))}
       </SetupsContainer>
     </GridContainer>
-  );
-};
+  )
+}
 
-export default Setups;
+export default Setups

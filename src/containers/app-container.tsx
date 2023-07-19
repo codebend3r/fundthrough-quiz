@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import QuizContainer from "./quiz-container";
-import { H1 } from "../typography/headers";
+import styled from '@emotion/styled'
+import QuizContainer from './quiz-container'
+import { H1 } from '../typography/headers'
 
 const OuterContainer = styled.div`
   width: 100vw;
   height: 100vh;
-`;
+`
 
 const InnerContainer = styled.div`
   display: grid;
@@ -15,7 +15,7 @@ const InnerContainer = styled.div`
   height: 100%;
   grid-template-columns: 1fr;
   grid-template-rows: max-content;
-`;
+`
 
 export const App = () => (
   <OuterContainer>
@@ -24,6 +24,6 @@ export const App = () => (
       <QuizContainer />
     </InnerContainer>
   </OuterContainer>
-);
+)
 
-export default App;
+export default App

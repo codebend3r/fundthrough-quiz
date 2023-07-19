@@ -1,24 +1,24 @@
-import axios from "axios";
-import { create } from "zustand";
-import { Setup, Punchline, DataChunk, JokeHash } from "../types";
-import { findMatchById } from "../utils/findMatchUtils";
+import axios from 'axios'
+import { create } from 'zustand'
+import { Setup, Punchline, DataChunk, JokeHash } from '../types'
+import { findMatchById } from '../utils/findMatchUtils'
 
-const JOKES_URL = "https://official-joke-api.appspot.com/jokes/ten";
+const JOKES_URL = 'https://official-joke-api.appspot.com/jokes/ten'
 
 type GameScore = {
-  isLoading: boolean;
-  correctIDs: number[];
-  selectedJoke: JokeHash;
-  correctCount: number;
-  setupsList: Setup[];
-  punchlinesList: Punchline[];
-  getJokes: () => void;
-  reset: () => void;
-  onSetupClick: (setup: Setup) => any;
-  onPunchlineClick: (punchline: Punchline) => any;
-  registerCorrectAnswer: (id: number) => any;
-  rawJokesData: unknown;
-};
+  isLoading: boolean
+  correctIDs: number[]
+  selectedJoke: JokeHash
+  correctCount: number
+  setupsList: Setup[]
+  punchlinesList: Punchline[]
+  getJokes: () => void
+  reset: () => void
+  onSetupClick: (setup: Setup) => any
+  onPunchlineClick: (punchline: Punchline) => any
+  registerCorrectAnswer: (id: number) => any
+  rawJokesData: unknown
+}
 
 export const useGameScore = create<GameScore>((set) => ({
   isLoading: false,
@@ -37,10 +37,10 @@ export const useGameScore = create<GameScore>((set) => ({
       },
       correctIDs: [],
       correctCount: 0,
-    });
+    })
 
     try {
-      const fetchedData = await axios.get(JOKES_URL);
+      const fetchedData = await axios.get(JOKES_URL)
 
       set({
         isLoading: false,
@@ -55,12 +55,12 @@ export const useGameScore = create<GameScore>((set) => ({
             punchline,
           })
         ),
-      });
+      })
     } catch (error) {
       set({
         isLoading: false,
         rawJokesData: {},
-      });
+      })
     }
   },
   reset: () =>
@@ -74,33 +74,33 @@ export const useGameScore = create<GameScore>((set) => ({
     }),
   onSetupClick: (setup: Setup) =>
     set((state) => {
-      const { punchline } = state.selectedJoke;
+      const { punchline } = state.selectedJoke
 
-      const selectedJoke = { setup, punchline };
+      const selectedJoke = { setup, punchline }
 
       const isCorrectAnswer: boolean = findMatchById({
         setup,
         punchline,
-      });
+      })
 
-      isCorrectAnswer && state.registerCorrectAnswer(setup.id);
+      isCorrectAnswer && state.registerCorrectAnswer(setup.id)
 
-      return { selectedJoke };
+      return { selectedJoke }
     }),
   onPunchlineClick: (punchline: Punchline) =>
     set((state) => {
-      const { setup } = state.selectedJoke;
+      const { setup } = state.selectedJoke
 
-      const selectedJoke = { setup, punchline };
+      const selectedJoke = { setup, punchline }
 
       const isCorrectAnswer: boolean = findMatchById({
         setup,
         punchline,
-      });
+      })
 
-      isCorrectAnswer && state.registerCorrectAnswer(punchline.id);
+      isCorrectAnswer && state.registerCorrectAnswer(punchline.id)
 
-      return { selectedJoke };
+      return { selectedJoke }
     }),
   registerCorrectAnswer: (id: number) =>
     set((state) => ({
@@ -110,4 +110,4 @@ export const useGameScore = create<GameScore>((set) => ({
   rawJokesData: {},
   setupsList: [],
   punchlinesList: [],
-}));
+}))
